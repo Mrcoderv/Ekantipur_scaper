@@ -1,0 +1,89 @@
+Prompts I used while building this scraper
+Tool: Cursor IDE
+Project: ekantipur.com scraper for Audio Bee assessment
+============================================================
+
+
+PROMPT 1 — Getting started, writing the main script
+-----------------------------------------------------
+I need to build a Playwright Python web scraper for ekantipur.com for a job assessment.
+Here are the exact requirements:
+
+TASK 1 - Extract top 5 Entertainment news articles from the मनोरञ्जन section:
+- title: headline of the article
+- image_url: full URL of the thumbnail image
+- category: the category label in Nepali (e.g. "मनोरञ्जन", "बलिउड")
+- author: author name if available, null if not found
+
+TASK 2 - Extract the Cartoon of the Day (व्यंग्यचित्र) section:
+- title: cartoon title or caption
+- image_url: direct URL to the cartoon image
+- author: cartoonist name
+
+Technical requirements:
+- Python 3.11+ with Playwright sync API
+- Wait properly for dynamic content using wait_for_selector and wait_for_load_state
+- Use try/except so missing elements don't crash the script
+- CSS selectors preferred, avoid XPath where possible
+- Comments throughout so the code is easy to follow
+- Save to output.json with ensure_ascii=False (the site is in Nepali)
+- Keep headless=False so I can watch the browser while testing
+
+Output should look like this:
+{
+  "entertainment_news": [
+    {
+      "title": "Article headline here",
+      "image_url": "https://...",
+      "category": "मनोरञ्जन",
+      "author": "Author Name or null"
+    }
+  ],
+  "cartoon_of_the_day": {
+    "title": "Cartoon title",
+    "image_url": "https://...",
+    "author": "Cartoonist Name"
+  }
+}
+
+Write the full scraper.py with comments explaining what each part does.
+
+
+PROMPT 2 — Running the script
+-----------------------------------------------------
+Ok looks good, now save this as scraper.py and run it with:
+uv run python scraper.py
+
+Let me know if output.json gets created and if the Nepali text looks correct inside it.
+
+
+PROMPT 3 — Images were coming back empty
+-----------------------------------------------------
+The image_url fields are all empty. I think the site uses lazy loading.
+Can you update the script to scroll the page first and also check
+data-src and data-original attributes as fallbacks before giving up on the image?
+
+
+PROMPT 4 — Couldn't find the entertainment section
+-----------------------------------------------------
+The script isn't finding the मनोरञ्जन section at all.
+Can you add a page.pause() right after the page loads so I can
+open Playwright Inspector and manually check what selectors are actually on the page?
+
+
+PROMPT 5 — Nepali text showed up as weird unicode codes
+-----------------------------------------------------
+In my output.json the Nepali words are showing as \u092e\u0928 style codes
+instead of actual letters. Can you fix the json.dump line to properly
+write UTF-8 so the Nepali text looks normal?
+
+
+PROMPT 6 — Author was null for every single article
+-----------------------------------------------------
+Every article is showing author as null but I can clearly see author names on the page.
+Can you add a print(card.inner_html()) for the first card so I can
+see the actual HTML structure and figure out the right selector for the author field?
+
+
+============================================================
+end of prompts
