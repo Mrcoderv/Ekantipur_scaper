@@ -44,11 +44,38 @@ ekantipur-scraper/
 curl -LsSf https://astral.sh/uv/install.sh | sh
 source $HOME/.local/bin/env
 ```
+## Windows (PowerShell)
 
-**Windows (PowerShell):**
+Install `uv`:
+
 ```powershell
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
+
+Restart PowerShell after installation, or run:
+
+```powershell
+$env:Path = "C:\Users\Acer\.local\bin;$env:Path"
+```
+
+Verify installation:
+
+```powershell
+uv --version
+```
+
+---
+
+## 2. Initialize the project
+
+Inside the project folder:
+
+```powershell
+uv init
+```
+
+This creates the required `pyproject.toml` file.
+
 
 ### 2. Install dependencies
 ```bash
