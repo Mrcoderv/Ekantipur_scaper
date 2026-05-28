@@ -1,5 +1,5 @@
 # ekantipur.com Scraper
-### Audio Bee — Data Extraction Intern Assessment
+
 
 A Playwright-based web scraper that extracts entertainment news and the cartoon of the day from [ekantipur.com](https://ekantipur.com).
 
